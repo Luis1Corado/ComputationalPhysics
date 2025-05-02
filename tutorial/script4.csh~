@@ -1,0 +1,29 @@
+#!/bin/tcsh -f
+# Rund this script as:
+# ./script4.csh Hello this is a tcsh script
+#----------------------------------------------------------------------------------------------------
+# `command` is command substitution: it is raplaced by stdout of command
+set now = `date` ; set mypc = `uname-a`
+# Print information: variables are expanded within double quotes
+echo "I am user $user working on the computer $HOST" #HOST is predefined
+echo "Today the date is     : $now"
+echo "My home directory is  : $home" #home is predefined
+echo "My current directory is: $cwd" #cwd changes with cd
+echo "My computer runs      : $mypc"
+echo "My process id is      : $$   " #$$ is predefined
+# Manipulate the command line: ($#argv is number of elemnets in array argv)
+echo "The command line has $#argv arguments"
+echo "The name of the command I am running is: $0"
+echo "Arguments 3rd to last of the command   : $argv[3-]"
+echo "The last argument is                   : $argv[$#argv]"
+echo "All arguments                          : $argv"
+
+# Ask user for input: eneter radii of circles
+echo -n "Enter radii of circles: "
+set Rs = ($<)
+if($#Rs < 10)then
+ echo "Need more than 10 radii. Exiting ... "
+ exit(1)
+endif
+echo "You entered $#Rs radii, the first is $Rs[1] and the last $Rs[$#Rs]"
+echo "Rs = $Rs"
